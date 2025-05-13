@@ -1,0 +1,16 @@
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    required:
+      - alienvaultApiKey
+    properties:
+      alienvaultApiKey:
+        type: string
+        description: The API key for accessing the Alient Vault OTX API.
+  commandFunction: |-
+    config => ({
+      command: 'python',
+      args: ['server.py'],
+      env: {OTX_API_KEY: config.alienvaultApiKey}
+    })
